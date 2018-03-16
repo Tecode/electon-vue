@@ -4,7 +4,7 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -43,8 +43,38 @@ module.exports = {
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        use: [
+          {
+            loader: 'vue-loader',
+            options: vueLoaderConfig
+          },
+          {
+            loader: 'iview-loader',
+            options: {
+              prefix: false
+            }
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+        {
+          loader: "style-loader"
+        },
+        {
+          loader: "css-loader"
+        },
+        {
+          loader: "less-loader", 
+          options: {
+            strictMath: true,
+            noIeCompat: true
+          }
+        },
+        {
+          loader: "postcss-loader"
+        }]
       },
       {
         test: /\.js$/,
