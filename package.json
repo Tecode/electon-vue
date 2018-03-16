@@ -11,7 +11,7 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit",
     "build": "node build/build.js",
-    "build_app_win": "electron-packager . ElectronVue --win --out ../ElectronVue --arch=x64 --version=1.0.0"
+    "build_app_win": "electron-packager . electron-vue --win --out ../ElectronVue --arch=x64 --version=1.0.0"
   },
   "dependencies": {
     "vue": "^2.5.2",
